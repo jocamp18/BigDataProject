@@ -17,16 +17,18 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 ├── mysql
 │   ├── mysql-inpatient.txt
 │   ├── mysql-outpatient.txt	
-├── dataset
 ├── pdi
+│   ├── mix-by-year.ktr
+│   ├── inpatient-select-merge.ktr
+│   ├── outpatient-merge-select.ktr
 ```
 
 ## Proceso
 
 1. (E) El primer trabajo que se debe hacer es realizar la extracción de todos los datos que vamos a utilizar durante la realización de este trabajo, estos pueden ser encontrados en las siguientes páginas web:
 
-* Outpatients: http://www.dshs.texas.gov/thcic/Outpatient-Discharge-Data-Public-Use-Data-File/
-* Inpatients: http://www.dshs.texas.gov/THCIC/Hospitals/Download.shtm
+	* Outpatients: http://www.dshs.texas.gov/thcic/Outpatient-Discharge-Data-Public-Use-Data-File/
+	* Inpatients: http://www.dshs.texas.gov/THCIC/Hospitals/Download.shtm
 
 Este proceso de descarga puede ser realizado con un robot o manualmente.	
 
@@ -59,10 +61,12 @@ $ ./pan.sh -file="<path-to-this-project>/pdi/outpatient-merge-select.ktr"
 
 3.1 MySQL: Se importarán los archivos TXT finales con los scripts que se encuentran en la carpeta "mysql".
 
-mysql-inpatients.txt
+mysql-inpatients.txt: Con este script se crea la table y se carga basada en un archivo TXT, cabe aclarar que las rutas deben ser cambiadas para que este aplique.
 
 ```
-
+USE cursodb;
+CREATE TABLE inpatients(RECORD_ID VARCHAR(40), DISCHARGE VARCHAR(40), THCIC_ID VARCHAR(40), TYPE_OF_ADMISSION VARCHAR(40), SOURCE_OF_ADMISSION VARCHAR(40), PAT_STATE VARCHAR(40), PAT_COUNTRY VARCHAR(40), COUNTY VARCHAR(40), PAT_STATUS VARCHAR(40), SEX_CODE VARCHAR(40), PAT_AGE VARCHAR(40), ADMITTING_DIAGNOSIS VARCHAR(40), PRINC_DIAG_CODE VARCHAR(40), OTH_DIAG_CODES VARCHAR(200), E_CODES VARCHAR(200));
+LOAD DATA LOCAL INFILE '/home/jocamp18/dshs_data/inpatients.txt' INTO TABLE inpatients COLUMNS TERMINATED BY ';';
 ```
 
 La forma de cargar estos scripts es la siguiente
@@ -71,15 +75,26 @@ $ mysql -u curso -pcurso
 MariaDB [(none)]> source <path-to-this-project>/mysql/mysql-inpatient.txt
 ```
 
-3.2 HDFS: Los archivos se ubicaran en una ruta de HDFS del usuario donde se guardará el dataset con el que se trabaja actualmente
+3.2 HDFS: Los archivos se ubicaran en una ruta de HDFS del usuario donde se guardará el dataset con el que se trabaja actualmente. Hay dos maneras de realizar esta tareas, la primera es manualmente utilizando comandos de HDFS y la segunda es a través de SQOOP obteniendo los datos de MySQL y transfiriendolos a HDFS. 
 
+Comandos HDFS:
 ```
 $ hdfs dfs -mkdir /user/<user>/dshs_dataset
-$ hdfs dfs -copyFromLocal <path-to-this-project>/dataset/inpatients.txt /user/<user>/dshs_dataset
-$ hdfs dfs -copyFromLocal <path-to-this-project>/dataset/outpatients.txt /user/<user>/dshs_dataset
+$ hdfs dfs -copyFromLocal <path-to-dataset>/inpatients.txt /user/<user>/dshs_dataset
+$ hdfs dfs -copyFromLocal <path-to-dataset>/outpatients.txt /user/<user>/dshs_dataset
 ```
 
-3.3 Hive: 
+SQOOP:
+```
+$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients  --target-dir /user/jocamp18/dshs_dataset/inpatients -m 1
+$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table outpatients  --target-dir /user/jocamp18/dshs_dataset/outpatients -m 1
+```
+
+3.3 Hive: Para cargar los datos en Hive utilizaremos SQOOP basados en las tablas creadas en MySQL (inpatients y outpatients que se encuentran en la base de datos cursodb).
+
+* Lo primero que se debe hacer una tabla en Hive a partir de la definición de una tabla en MySQL. Por ejemplo, con inpatients:
+
+
 
 3.4 HBase:
 
