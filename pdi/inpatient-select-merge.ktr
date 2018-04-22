@@ -7609,7 +7609,7 @@
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>0</length>
+        <length>-1</length>
         <precision>-1</precision>
       </field>
       <field>
@@ -7621,7 +7621,7 @@
         <group/>
         <nullif/>
         <trim_type>none</trim_type>
-        <length>0</length>
+        <length>-1</length>
         <precision>-1</precision>
       </field>
     </fields>
