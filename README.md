@@ -4,27 +4,27 @@
 Este es el primer proyecto de la materia de BigData que esta orientado a la combinación de técnicas de análitica moderna con técnicas clasicas como BI que aún es muy usado en las compañías Colombianas. Básicamente, el proyecto consta de el proceso de ETL de un conjunto de datos libres publicados por el estado de Texas sobre las emergencias presentadas en los diferentes hospitales de dicho estado, posterior a esto se debe hacer todo el procesamiento, análisis y visualización de los datos para entender la situación que allí pasa en cuanto a las consultas diarias, tanto en terminos de análitica descriptiva como predictiva.
 
 ## Prerrequisitos
-	* Pentaho PDI
-	* MySQL
-	* Hive
-	* HDFS
-	* HBase
-	* Spark
+* Pentaho PDI
+* MySQL
+* Hive
+* HDFS
+* HBase
+* Spark
 
 ## Estructura de carpetas
-	```
-	.
-	├── mysql
-	│   ├── mysql-inpatient.txt
-	│   └── mysql-outpatient.txt	
-	├── pdi
-	│   ├── mix-by-year.ktr
-	│   ├── inpatient-select-merge.ktr
-	│   └── outpatient-merge-select.ktr
-	├── sqoop
-	│   ├── inpatients.java
-	│   └── outpatients.java
-	```
+```
+.
+├── mysql
+│   ├── mysql-inpatient.txt
+│   └── mysql-outpatient.txt	
+├── pdi
+│   ├── mix-by-year.ktr
+│   ├── inpatient-select-merge.ktr
+│   └── outpatient-merge-select.ktr
+├── sqoop
+│   ├── inpatients.java
+│   └── outpatients.java
+```
 
 ## Proceso
 
@@ -108,4 +108,12 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	3.4 HBase:
 
+4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las siguiente preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, cada una de las soluciones serán presentadas después de indicar las preguntas.
+
+	* ¿Cuál es la proporción de usuarios que asisten a los centros médicos y realmente tienen una urgencia?
+	* ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real?
+	* ¿Cuáles enfermedades son las más comunes?
+	* ¿Quienes asisten más a los centros médicos los hombres o las mujeres?
+	* ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
+	* ¿Cuál es la región donde más consultas médicas se realizan?
 
