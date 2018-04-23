@@ -117,3 +117,4 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
 	* ¿Cuál es la región donde más consultas médicas se realizan?
 
+5. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
