@@ -1,0 +1,7 @@
+use cursodb;
+SET @year="2011";
+SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year);
+SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year);
+SET @total = @rec_in + @rec_out;
+SET @out_per = (@rec_out/@total)*100;
+SELECT @out_per as outpatients_proportion;

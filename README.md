@@ -108,13 +108,82 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	3.4 HBase:
 
-4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las siguiente preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, cada una de las soluciones serán presentadas después de indicar las preguntas.
+4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, cada una de las soluciones serán presentadas después de indicar las preguntas.
 
-	* ¿Cuál es la proporción de usuarios que asisten a los centros médicos y realmente tienen una urgencia?
-	* ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real?
-	* ¿Cuáles enfermedades son las más comunes?
-	* ¿Quienes asisten más a los centros médicos los hombres o las mujeres?
-	* ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
-	* ¿Cuál es la región donde más consultas médicas se realizan?
+	4.1 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y realmente tienen una urgencia en un año determinado?
+	
+	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/1.sql que tiene el siguiente contenido:
+
+	```
+	use cursodb;
+	SET @year=<year>;
+	SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year);
+	SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year);
+	SET @total = @rec_in + @rec_out;	
+	SET @in_per = (@rec_in/@total)*100;
+	SELECT @in_per as inpatients_proportion;
+	```
+	
+	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+
+	```
+	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/1.mysql
+	```
+
+	* Script Hive:
+	* Script HBase:
+	* Script SparkSQL:
+
+	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
+
+	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/2.sql que tiene el siguiente contenido:
+	
+	```
+	use cursodb;
+	SET @year=<year>;
+	SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year);
+	SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year);
+	SET @total = @rec_in + @rec_out;
+	SET @out_per = (@rec_out/@total)*100;
+	SELECT @out_per as outpatients_proportion;
+	```
+
+	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+	
+	```
+        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
+        ```
+
+	* Script Hive:
+	* Script HBase:
+	* Script SparkSQL:
+
+	4.3 ¿Cuáles enfermedades son las más comunes?
+
+	* Script MySQL:
+	* Script Hive:
+	* Script HBase:
+	* Script SparkSQL:
+
+	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres?
+
+	* Script MySQL:
+	* Script Hive:
+	* Script HBase:
+	* Script SparkSQL:
+
+	4.5 ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
+
+	* Script MySQL:
+	* Script Hive:
+	* Script HBase:
+	* Script SparkSQL:
+
+	4.6 ¿Cuál es la región donde más consultas médicas se realizan?
+
+	* Script MySQL:
+	* Script Hive:
+	* Script HBase:
+	* Script SparkSQL:
 
 5. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
