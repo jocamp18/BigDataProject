@@ -165,9 +165,10 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* Script HBase:
 	* Script SparkSQL:
 
-	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres?
+	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
 
 	* Script MySQL:
+	
 	* Script Hive:
 	* Script HBase:
 	* Script SparkSQL:
