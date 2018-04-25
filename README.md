@@ -151,8 +151,8 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
 	
 	```
-        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
-        ```
+	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
+	```
 
 	* Script Hive:
 	* Script HBase:
@@ -186,9 +186,9 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	
 	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
 
-        ```
+	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
-        ```
+	```
 
 	* Script Hive:
 	* Script HBase:
@@ -211,9 +211,9 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	
 	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
 
-        ```
-        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
-        ```
+	```
+       	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
+	```
 
 	* Script Hive:
 	* Script HBase:
