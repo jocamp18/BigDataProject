@@ -112,7 +112,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	4.1 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y realmente tienen una urgencia en un año determinado?
 	
-	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/1.sql que tiene el siguiente contenido:
+	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/1.mysql que tiene el siguiente contenido:
 
 	```
 	use cursodb;
@@ -136,7 +136,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
 
-	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/2.sql que tiene el siguiente contenido:
+	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/2.mysql que tiene el siguiente contenido:
 	
 	```
 	use cursodb;
@@ -167,15 +167,54 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
 
-	* Script MySQL:
+	* Script MySQL: Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/4.mysql que tiene el siguiente contenido. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
+
+	```
+	use cursodb;
+	SET @year=<year>;
+	SET @male_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
+	SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
+	SET @female_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+	SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+	SET @male = @male_in + @male_out;
+	SET @female = @female_in + @female_out;
+	SET @total = @male + @female;
+	SET @male_per = (@male/@total)*100
+	SET @female_per = (@female/@total)*100
+	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
+	```
 	
+	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+
+        ```
+        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
+        ```
+
 	* Script Hive:
 	* Script HBase:
 	* Script SparkSQL:
 
 	4.5 ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
 
-	* Script MySQL:
+	* Script MySQL:Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/5.mysql que tiene el siguiente contenido. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
+
+	```
+	use cursodb;
+	SET @year=<year>;
+	SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
+	SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+	SET @total = @male_out + @female_out;
+	SET @male_per = (@male_out/@total)*100;
+	SET @female_per = (@female_out/@total)*100;
+	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
+	```
+	
+	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+
+        ```
+        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
+        ```
+
 	* Script Hive:
 	* Script HBase:
 	* Script SparkSQL:

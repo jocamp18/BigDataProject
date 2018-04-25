@@ -7,6 +7,6 @@ SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@ye
 SET @male = @male_in + @male_out;
 SET @female = @female_in + @female_out;
 SET @total = @male + @female;
-SET @male_per = (@male/@total)*100
-SET @female_per = (@female/@total)*100
+SET @male_per = (@male/@total)*100;
+SET @female_per = (@female/@total)*100;
 SELECT @male_per AS male_proportion, @female_per AS female_proportion;
