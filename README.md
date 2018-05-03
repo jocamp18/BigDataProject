@@ -1,7 +1,7 @@
 # BigDataProject
 
 ## Descripción
-Este es el primer proyecto de la materia de BigData que esta orientado a la combinación de técnicas de análitica moderna con técnicas clasicas como BI que aún es muy usado en las compañías Colombianas. Básicamente, el proyecto consta de el proceso de ETL de un conjunto de datos libres publicados por el estado de Texas sobre las emergencias presentadas en los diferentes hospitales de dicho estado, posterior a esto se debe hacer todo el procesamiento, análisis y visualización de los datos para entender la situación que allí pasa en cuanto a las consultas diarias, tanto en terminos de análitica descriptiva como predictiva.
+Este es el primer proyecto de la materia de BigData que esta orientado a la combinación de técnicas de análitica moderna con técnicas clasicas (Que aún son muy usadas en las compañías Colombianas). Básicamente, el proyecto consta de el proceso de ETL de un conjunto de datos libres publicados por el estado de Texas sobre las emergencias presentadas en los diferentes hospitales de dicho estado, posterior a esto se debe hacer todo el procesamiento, análisis y visualización de los datos para entender la situación que allí pasa en cuanto a las consultas diarias, tanto en terminos de análitica descriptiva como predictiva.
 
 ## Prerrequisitos
 * Pentaho PDI
@@ -55,14 +55,14 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	$ ./pan.sh -file="<path-to-this-project>/pdi/outpatient-merge-select.ktr"
 	```
 
-**Nota:** Cabe aclarar que el éxito de todas las ejecuciones realizadas en este proceso dependen de las rutas específicadas en el desarrollo en PDI, es decir, que los archivos de entrada y salida tengan como especificación las mismas rutas. Sin embargo, para mayor facilidad los archivos ya procesados se encuentran en la ruta "<path-to-this-project>/pdi/output/"
+**Nota:** Cabe aclarar que el éxito de todas las ejecuciones realizadas en este proceso dependen de las rutas específicadas en el desarrollo en PDI, es decir, que los archivos de entrada y salida tengan como especificación las mismas rutas.
 
 3. (L) La carga de datos puede ser utilizada de diferentes maneras dependiendo de los gustos del usuario y de los destinos designados.
 
 	* Una primer aproximación es realizar la carga a todos los destinos usando Pentaho Data Integration, es necesario hacer una configuración previa e instalar algunos drivers para que PDI se pueda comunicar a los respectivos destinos.
 	* Otra aproximación es a través de la obtención de los datos con las propias herramientas finales, esto se puede lograr con diferentes scripts que automatizan este proceso. En esta ocasión se brinda explicación de este camino para que quede claro el uso de las diferentes herramientas que están disponibles en el DCA. El resultado final brindado por PDI serán dos archivos TXT uno para Inpatients y otro para Outpatients ("inpatients.txt" y "outpatients.txt" respectivamente) con los cuales se trabajará durante la carga de los datos para cada uno de los destinos, a continuación se presetará la forma de cargar los datos en cada uno de los destinos, cabe aclarar que solo se harán los ejemplos con Inpatients ya que en ambos casos es lo mismo solo que con archivos fuente diferentes.
 
-	3.1 MySQL: Se importarán los archivos TXT finales con los scripts que se encuentran en la carpeta "mysql".
+	3.1 MySQL: Se importarán los archivos TXT finales con los scripts que se encuentran en la carpeta "mysql". Eliminar los encabezados de los archivos TXT resultantes de Pentaho PDI.
 
 	mysql-inpatients.txt: Con este script se crea la table y se carga basada en un archivo TXT, cabe aclarar que las rutas deben ser cambiadas para que este aplique.
 
@@ -89,8 +89,8 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	SQOOP:
 	```
-	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients  --target-dir /user/jocamp18/dshs_dataset/inpatients -m 1
-	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table outpatients  --target-dir /user/jocamp18/dshs_dataset/outpatients -m 1
+	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients  --target-dir /user/<user>/dshs_dataset/sqoop/inpatients -m 1
+	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table outpatients  --target-dir /user/<user>/dshs_dataset/sqoop/outpatients -m 1
 	```
 
 	3.3 Hive: Para cargar los datos en Hive utilizaremos SQOOP basados en las tablas creadas en MySQL (inpatients y outpatients que se encuentran en la base de datos cursodb).
@@ -102,8 +102,15 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	beeline> !connect jdbc:hive2://hdpmaster.dis.eafit.edu.co:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2
 	beeline> CREATE DATABASE curso;
 	```
+	* Posteriormente, se debe crear una tabla en hive basado en un esquema ya definido en MySQL (En este caso la tabla inpatients). 
 	```
-	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients --fields-terminated-by ";" --hive-import --create-hive-table --hive-table curso.inpatients
+	$ sqoop create-hive-table --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients --hive-table dshs.inpatients --mysql-delimiters
+	```
+	
+	* Finalmente, se importa la tabla que se encuentra en MySQL a Hive.	
+
+	```
+	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients --hive-import --hive-table dshs.inpatients -m 1 --mysql-delimiters
 	```
 
 	3.4 HBase:
