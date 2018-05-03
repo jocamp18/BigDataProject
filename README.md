@@ -1,4 +1,4 @@
-# BigDataProject
+﻿# BigDataProject
 
 ## Descripción
 Este es el primer proyecto de la materia de BigData que esta orientado a la combinación de técnicas de análitica moderna con técnicas clasicas (Que aún son muy usadas en las compañías Colombianas). Básicamente, el proyecto consta de el proceso de ETL de un conjunto de datos libres publicados por el estado de Texas sobre las emergencias presentadas en los diferentes hospitales de dicho estado, posterior a esto se debe hacer todo el procesamiento, análisis y visualización de los datos para entender la situación que allí pasa en cuanto a las consultas diarias, tanto en terminos de análitica descriptiva como predictiva.
@@ -113,7 +113,23 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	$ sqoop import --connect jdbc:mysql://192.168.10.80:3306/cursodb --username curso -P --table inpatients --hive-import --hive-table dshs.inpatients -m 1 --mysql-delimiters
 	```
 
-	3.4 HBase:
+	3.4 HBase: Para cargar los datos en HBase igualmente se utiliza Sqoop para importar desde MySQL.
+
+	* Primero ingresamos al shell de HBase para crear la tabla que recibirá los datos.
+
+	```
+	$ hbase shell
+	hbase> create 'inpatients', 'details'
+	```
+
+	* Luego, utilizamos el código para importar de MySQL a HBase mesdiante Sqoop.
+
+	```
+	$ sqoop import --connect jdbc:mysql://192.160.10.80:3306/cursodb --username curso --password curso --table inpatients --hbase-table inpatients --column-family details --hbase-row-key RECORD_ID -m 1
+	```
+
+	* Del mismo modo, el proceso es igual al momento de exportar la tabla outpatients.
+
 
 4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, cada una de las soluciones serán presentadas después de indicar las preguntas.
 
