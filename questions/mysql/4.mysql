@@ -1,9 +1,9 @@
 use cursodb;
 SET @year="2011";
-SET @male_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
-SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
-SET @female_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
-SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+SET @male_in = (SELECT COUNT(*) FROM inpatients WHERE YEAR=@year AND SEX_CODE='M');
+SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='M');
+SET @female_in = (SELECT COUNT(*) FROM inpatients WHERE YEAR=@year AND SEX_CODE='F');
+SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='F');
 SET @male = @male_in + @male_out;
 SET @female = @female_in + @female_out;
 SET @total = @male + @female;

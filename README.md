@@ -131,23 +131,23 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* Del mismo modo, el proceso es igual al momento de exportar la tabla outpatients.
 
 
-4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, cada una de las soluciones serán presentadas después de indicar las preguntas.
+4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, por cada una de las plataformas se presentará la forma de ejecutar el script y el tiempo en promedio necesitado para que este termine; Se brindará una solución general en MySQL donde se muestra la solución a la pregunta, hay que tener en cuenta que esta es aplicable a las otras plataformas con unos ligeros cambios.
+	
+	**Nota: ** Los campos encerrados en parentesis angulares < > deben ser remplazados por el valor correspondiente.
 
 	4.1 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y realmente tienen una urgencia en un año determinado?
-	
-	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/1.mysql que tiene el siguiente contenido:
 
 	```
 	use cursodb;
 	SET @year=<year>;
-	SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year);
-	SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year);
+	SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE YEAR=@year);
+	SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year);
 	SET @total = @rec_in + @rec_out;	
 	SET @in_per = (@rec_in/@total)*100;
 	SELECT @in_per as inpatients_proportion;
 	```
 	
-	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+	* Script MySQL:
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/1.mysql
@@ -158,21 +158,19 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* Script SparkSQL:
 
 	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
-
-	* Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/2.mysql que tiene el siguiente contenido:
 	
 	```
 	use cursodb;
 	SET @year=<year>;
-	SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year);
-	SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year);
+	SET @rec_in = (SELECT COUNT(*) FROM inpatients WHERE YEAR=@year);
+	SET @rec_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year);
 	SET @total = @rec_in + @rec_out;
 	SET @out_per = (@rec_out/@total)*100;
 	SELECT @out_per as outpatients_proportion;
 	```
 
-	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
-	
+	* Script MySQL:
+
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
 	```
@@ -181,24 +179,34 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* Script HBase:
 	* Script SparkSQL:
 
-	4.3 ¿Cuáles enfermedades son las más comunes?
+	4.3 ¿Cuáles sintomas son los más comunes por año?
+
+	```
+	use cursodb;
+	SET @year="2011";
+	SET @top=10;
+	SELECT princ_diag_code, SUM(patients) FROM((SELECT princ_diag_code, COUNT(*) AS patients FROM inpatients WHERE year=@year GROUP BY princ_diag_code) UNION (SELECT princ_diag_code, COUNT(*) AS patients FROM outpatients WHERE year=@year GROUP BY princ_diag_code)) COUNTY_PATIENTS GROUP BY princ_diag_code ORDER BY patients DESC LIMIT @top;
+	```
 
 	* Script MySQL:
+
+	```
+        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
+        ```
+
 	* Script Hive:
 	* Script HBase:
 	* Script SparkSQL:
 
 	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
 
-	* Script MySQL: Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/4.mysql que tiene el siguiente contenido. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
-
 	```
 	use cursodb;
 	SET @year=<year>;
-	SET @male_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
-	SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
-	SET @female_in = (SELECT COUNT(*) FROM inpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
-	SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+	SET @male_in = (SELECT COUNT(*) FROM inpatients WHERE YEAR=@year AND SEX_CODE='M');
+	SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='M');
+	SET @female_in = (SELECT COUNT(*) FROM inpatients WHERE YEAR=@year AND SEX_CODE='F');
+	SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='F');
 	SET @male = @male_in + @male_out;
 	SET @female = @female_in + @female_out;
 	SET @total = @male + @female;
@@ -207,7 +215,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+	* Script MySQL: El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
@@ -219,20 +227,18 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 
 	4.5 ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
 
-	* Script MySQL:Script MySQL: Este script se encuentra en la ruta BigDataProject/questions/mysql/5.mysql que tiene el siguiente contenido. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
-
 	```
 	use cursodb;
 	SET @year=<year>;
-	SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
-	SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+	SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='M');
+	SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='F');
 	SET @total = @male_out + @female_out;
 	SET @male_per = (@male_out/@total)*100;
 	SET @female_per = (@female_out/@total)*100;
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	Para ejecutar este script primero se debe cambiar el campo <year> por una cadena de texto que contenga el año que se quiere evaluar y posteriormente ejecutar el script de la siguiente manera:
+	* Script MySQL: El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
 
 	```
        	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
@@ -242,9 +248,21 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* Script HBase:
 	* Script SparkSQL:
 
-	4.6 ¿Cuál es la región donde más consultas médicas se realizan?
+	4.6 ¿Cuál es el condado donde más consultas médicas se realizan durante un año en específico?
+
+	```
+	use cursodb;
+	SET @year=<year>;
+	SET @top=<limit>;
+	SELECT county,year, patients FROM((SELECT county, year, COUNT(*) AS patients FROM inpatients group by county) UNION (SELECT county, year, COUNT(*) AS patients FROM outpatients group by county)) COUNTY_PATIENTS WHERE year=@year GROUP BY county ORDER BY patients DESC LIMIT @top;
+	```
 
 	* Script MySQL:
+
+	```
+        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
+        ```
+
 	* Script Hive:
 	* Script HBase:
 	* Script SparkSQL:

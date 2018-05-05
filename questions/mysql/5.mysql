@@ -1,7 +1,7 @@
 use cursodb;
 SET @year="2010";
-SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='M');
-SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE LEFT(DISCHARGE, 4)=@year AND SEX_CODE='F');
+SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='M');
+SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='F');
 SET @total = @male_out + @female_out;
 SET @male_per = (@male_out/@total)*100;
 SET @female_per = (@female_out/@total)*100;
