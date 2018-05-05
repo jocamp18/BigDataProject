@@ -1,0 +1,42 @@
+Output MySQL  1
+inpatients_proportion
+24.838161800
+
+Output MySQL  2
+outpatients_proportion
+75.161838100
+
+Output MySQL  3
+princ_diag_code	SUM(patients)
+V3000	227216
+V3001	125385
+V5789	69083
+486	84242
+65421	53744
+79380	53317
+0389	49623
+V1272	37262
+V7611	34675
+5849	35846
+
+Output MySQL  4
+male_proportion	female_proportion
+36.828983600	63.171016300
+
+Output MySQL  5
+male_proportion	female_proportion
+35.859985200	64.140014700
+
+Output MySQL  6
+county	SUM(patients)
+201	1651672
+113	939150
+439	694932
+029	662052
+453	414666
+215	321926
+	363240
+141	315050
+085	326415
+121	228865
+

@@ -33,7 +33,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	* Outpatients: http://www.dshs.texas.gov/thcic/Outpatient-Discharge-Data-Public-Use-Data-File/
 	* Inpatients: http://www.dshs.texas.gov/THCIC/Hospitals/Download.shtm
 
-Este proceso de descarga puede ser realizado con un robot o manualmente.	
+	Este proceso de descarga puede ser realizado con un robot o manualmente.	
 
 2. (T) Para el proceso de transformación se utilizó la herramienta Pentaho Data Integration (PDI), con este se hicieron filtros, se eliminaron campos innecesarios y se concatenaron otros, este proceso consta de tres partes que serán explicadas a continuación:
 
@@ -55,7 +55,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	$ ./pan.sh -file="<path-to-this-project>/pdi/outpatient-merge-select.ktr"
 	```
 
-**Nota:** Cabe aclarar que el éxito de todas las ejecuciones realizadas en este proceso dependen de las rutas específicadas en el desarrollo en PDI, es decir, que los archivos de entrada y salida tengan como especificación las mismas rutas.
+	**Nota:** Cabe aclarar que el éxito de todas las ejecuciones realizadas en este proceso dependen de las rutas específicadas en el desarrollo en PDI, es decir, que los archivos de entrada y salida tengan como especificación las mismas rutas.
 
 3. (L) La carga de datos puede ser utilizada de diferentes maneras dependiendo de los gustos del usuario y de los destinos designados.
 
@@ -131,9 +131,9 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	* Del mismo modo, el proceso es igual al momento de exportar la tabla outpatients.
 
 
-4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, por cada una de las plataformas se presentará la forma de ejecutar el script y el tiempo en promedio necesitado para que este termine; Se brindará una solución general en MySQL donde se muestra la solución a la pregunta, hay que tener en cuenta que esta es aplicable a las otras plataformas con unos ligeros cambios.
+4. Procesamiento: En esta tarea se realizará el procesamiento de datos para resolver las preguntas que han sido planteadas previo al inicio del proyecto. Estas serán resueltas utilizando diferentes plataformas, por cada una de las plataformas se presentará la forma de ejecutar el script y el tiempo en promedio (De 10 ejecuciones) necesitado para que este termine; Se brindará una solución general en MySQL donde se muestra la solución a la pregunta, hay que tener en cuenta que esta es aplicable a las otras plataformas con unos ligeros cambios.
 	
-	**Nota: ** Los campos encerrados en parentesis angulares < > deben ser remplazados por el valor correspondiente.
+	**Nota:** Los campos encerrados en parentesis angulares < > deben ser remplazados por el valor correspondiente.
 
 	4.1 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y realmente tienen una urgencia en un año determinado?
 
@@ -146,8 +146,8 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SET @in_per = (@rec_in/@total)*100;
 	SELECT @in_per as inpatients_proportion;
 	```
-	
-	* Script MySQL:
+
+	* Script MySQL: 53.2391 segundos
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/1.mysql
@@ -169,7 +169,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SELECT @out_per as outpatients_proportion;
 	```
 
-	* Script MySQL:
+	* Script MySQL: 53.2224 segundos
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
@@ -188,7 +188,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SELECT princ_diag_code, SUM(patients) FROM((SELECT princ_diag_code, COUNT(*) AS patients FROM inpatients WHERE year=@year GROUP BY princ_diag_code) UNION (SELECT princ_diag_code, COUNT(*) AS patients FROM outpatients WHERE year=@year GROUP BY princ_diag_code)) COUNTY_PATIENTS GROUP BY princ_diag_code ORDER BY patients DESC LIMIT @top;
 	```
 
-	* Script MySQL:
+	* Script MySQL: 57.1152 segundos
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
@@ -215,7 +215,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	* Script MySQL: El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
+	* Script MySQL: 1 minuto 40.052 segundos. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
@@ -238,7 +238,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	* Script MySQL: El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
+	* Script MySQL: 49.0227 segundos. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
 
 	```
        	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
@@ -257,7 +257,7 @@ Este proceso de descarga puede ser realizado con un robot o manualmente.
 	SELECT county,year, patients FROM((SELECT county, year, COUNT(*) AS patients FROM inpatients group by county) UNION (SELECT county, year, COUNT(*) AS patients FROM outpatients group by county)) COUNTY_PATIENTS WHERE year=@year GROUP BY county ORDER BY patients DESC LIMIT @top;
 	```
 
-	* Script MySQL:
+	* Script MySQL: 56.2355
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
