@@ -1,5 +1,5 @@
 use cursodb;
-SET @year="2010";
+SET @year="2011";
 SET @male_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='M');
 SET @female_out = (SELECT COUNT(*) FROM outpatients WHERE YEAR=@year AND SEX_CODE='F');
 SET @total = @male_out + @female_out;

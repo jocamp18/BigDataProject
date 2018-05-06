@@ -25,7 +25,7 @@ male_proportion	female_proportion
 
 Output MySQL  5
 male_proportion	female_proportion
-35.859985200	64.140014700
+36.073144800	63.926855100
 
 Output MySQL  6
 county	SUM(patients)

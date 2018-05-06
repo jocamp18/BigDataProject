@@ -192,7 +192,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
-        ```
+	```
 
 	* Script Hive:
 	* Script HBase:
