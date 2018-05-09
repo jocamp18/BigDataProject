@@ -1,4 +1,4 @@
 use cursodb;
 SET @year="2011";
 SET @top=10;
-SELECT princ_diag_code, SUM(patients) FROM((SELECT princ_diag_code, COUNT(*) AS patients FROM inpatients WHERE year=@year GROUP BY princ_diag_code) UNION (SELECT princ_diag_code, COUNT(*) AS patients FROM outpatients WHERE year=@year GROUP BY princ_diag_code)) COUNTY_PATIENTS GROUP BY princ_diag_code ORDER BY patients DESC LIMIT 10;
+SELECT princ_diag_code, SUM(patients) AS pat FROM((SELECT princ_diag_code, COUNT(*) AS patients FROM inpatients WHERE year=@year GROUP BY princ_diag_code) UNION (SELECT princ_diag_code, COUNT(*) AS patients FROM outpatients WHERE year=@year GROUP BY princ_diag_code)) COUNTY_PATIENTS GROUP BY princ_diag_code ORDER BY pat DESC LIMIT 10;

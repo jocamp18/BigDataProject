@@ -147,13 +147,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @in_per as inpatients_proportion;
 	```
 
-	* Script MySQL: 53.2391 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
+	**Tiempo:** 52.5678 segundos
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/1.mysql
 	```
 
-	* Script Hive:
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
+	**Tiempo:**
+	
+	```
+	./1.sh 2011
+	```
+
 	* Script HBase:
 	* Script SparkSQL:
 
@@ -169,13 +176,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @out_per as outpatients_proportion;
 	```
 
-	* Script MySQL: 53.2224 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
+	**Tiempo:** 52.1975 segundos
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
 	```
 
-	* Script Hive:
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
+	**Tiempo:**
+
+	```
+	./2.sh 2011
+	```
+
 	* Script HBase:
 	* Script SparkSQL:
 
@@ -188,13 +202,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT princ_diag_code, SUM(patients) FROM((SELECT princ_diag_code, COUNT(*) AS patients FROM inpatients WHERE year=@year GROUP BY princ_diag_code) UNION (SELECT princ_diag_code, COUNT(*) AS patients FROM outpatients WHERE year=@year GROUP BY princ_diag_code)) COUNTY_PATIENTS GROUP BY princ_diag_code ORDER BY patients DESC LIMIT @top;
 	```
 
-	* Script MySQL: 57.1152 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
+	**Tiempo:** 56.2993 segundos
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
 	```
 
-	* Script Hive:
+	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
+	**Tiempo:**
+
+	```
+	hive -f 3.hql
+	```
+
 	* Script HBase:
 	* Script SparkSQL:
 
@@ -215,13 +236,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	* Script MySQL: 1 minuto 40.052 segundos. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
+	**Tiempo:** 1 minuto 38.399 segundos
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
 	```
 
-	* Script Hive:
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
+	**Tiempo:**
+
+	```
+	./4.sh 2011
+	```
+
 	* Script HBase:
 	* Script SparkSQL:
 
@@ -238,13 +266,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	* Script MySQL: 49.0227 segundos. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
+	* Script MySQL:  Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
+	*Tiempo:* 48.862 segundos
 
 	```
        	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
 	```
 
-	* Script Hive:
+	* Script Hive:Este script en bash recibe como parametro el año que se desea especificar.
+	**Tiempo:**
+
+        ```
+        ./5.sh 2011
+        ```
+	
 	* Script HBase:
 	* Script SparkSQL:
 
@@ -257,13 +292,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT county,year, patients FROM((SELECT county, year, COUNT(*) AS patients FROM inpatients group by county) UNION (SELECT county, year, COUNT(*) AS patients FROM outpatients group by county)) COUNTY_PATIENTS WHERE year=@year GROUP BY county ORDER BY patients DESC LIMIT @top;
 	```
 
-	* Script MySQL: 56.2355
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
+	**Tiempo:** 54.7685 segundos
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
         ```
 
-	* Script Hive:
+	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
+        **Tiempo:**
+
+        ```
+        hive -f 6.hql
+        ```
+
 	* Script HBase:
 	* Script SparkSQL:
 

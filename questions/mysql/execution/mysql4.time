@@ -1,60 +1,42 @@
 
-real	1m41.094s
-user	0m0.012s
-sys	0m0.008s
-Total: 
-141.094
+real	1m39.977s
+user	0m0.013s
+sys	0m0.006s
 
-real	1m37.542s
-user	0m0.007s
-sys	0m0.005s
-Total: 
-139.318
-
-real	1m41.139s
-user	0m0.015s
-sys	0m0.007s
-Total: 
-139.925
-
-real	1m39.370s
-user	0m0.014s
-sys	0m0.007s
-Total: 
-139.786
-
-real	1m38.526s
-user	0m0.011s
-sys	0m0.004s
-Total: 
-139.534
-
-real	1m39.696s
-user	0m0.009s
-sys	0m0.005s
-Total: 
-139.561
-
-real	1m41.844s
-user	0m0.009s
-sys	0m0.008s
-Total: 
-139.887
-
-real	1m40.346s
-user	0m0.012s
-sys	0m0.009s
-Total: 
-139.945
-
-real	1m41.171s
+real	1m38.150s
 user	0m0.010s
-sys	0m0.003s
-Total: 
-140.081
+sys	0m0.004s
 
-real	1m39.787s
+real	1m38.351s
+user	0m0.013s
+sys	0m0.007s
+
+real	1m36.961s
+user	0m0.012s
+sys	0m0.008s
+
+real	1m40.238s
+user	0m0.011s
+sys	0m0.003s
+
+real	1m39.002s
+user	0m0.016s
+sys	0m0.005s
+
+real	1m38.755s
 user	0m0.014s
 sys	0m0.006s
+
+real	1m39.357s
+user	0m0.006s
+sys	0m0.007s
+
+real	1m39.531s
+user	0m0.011s
+sys	0m0.009s
+
+real	1m33.670s
+user	0m0.016s
+sys	0m0.005s
 Total: 
-140.052
+138.399
