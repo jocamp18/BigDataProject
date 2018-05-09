@@ -155,7 +155,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:**
+	**Tiempo:** 1 minuto 2.967 segundos
 	
 	```
 	$ ./1.sh 2011
@@ -184,7 +184,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:**
+	**Tiempo:** 1 minuto 4.2406 segundos
 
 	```
 	$ ./2.sh 2011
@@ -210,7 +210,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
-	**Tiempo:**
+	**Tiempo:** 37.9557 segundos
 
 	```
 	$ hive -f 3.hql
@@ -244,7 +244,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:**
+	**Tiempo:** 2 minutos 8.4631 segundos
 
 	```
 	$ ./4.sh 2011
@@ -274,11 +274,11 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script Hive:Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:**
+	**Tiempo:** 1 minuto 2.4223 segundos
 
-        ```
+	```
 	$ ./5.sh 2011
-        ```
+	```
 	
 	* Script HBase:
 	* Script SparkSQL:
@@ -300,7 +300,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
-        **Tiempo:**
+        **Tiempo:** 36.9591 segundos
 
 	```
 	$ hive -f 6.hql
@@ -309,4 +309,49 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	* Script HBase:
 	* Script SparkSQL:
 
-5. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
+5. Resultados
+
+Output MySQL  1
+inpatients_proportion
+24.838161800
+
+Output MySQL  2
+outpatients_proportion
+75.161838100
+
+Output MySQL  3
+princ_diag_code pat
+V7612   899374
+V3000   227216
+V7651   162563
+78900   134323
+V3001   125385
+78650   120846
+7840    116996
+78659   111364
+36616   108938
+41401   98306
+
+Output MySQL  4
+male_proportion female_proportion
+36.828983600    63.171016300
+
+Output MySQL  5
+male_proportion female_proportion
+36.073144800    63.926855100
+
+Output MySQL  6
+county  pat
+201     1651672
+113     939150
+439     694932
+029     662052
+453     414666
+        363240
+085     326415
+215     321926
+141     315050
+027     245063
+
+
+6. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
