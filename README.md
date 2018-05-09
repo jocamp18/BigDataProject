@@ -158,7 +158,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:**
 	
 	```
-	./1.sh 2011
+	$ ./1.sh 2011
 	```
 
 	* Script HBase:
@@ -187,7 +187,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:**
 
 	```
-	./2.sh 2011
+	$ ./2.sh 2011
 	```
 
 	* Script HBase:
@@ -213,7 +213,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:**
 
 	```
-	hive -f 3.hql
+	$ hive -f 3.hql
 	```
 
 	* Script HBase:
@@ -247,7 +247,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:**
 
 	```
-	./4.sh 2011
+	$ ./4.sh 2011
 	```
 
 	* Script HBase:
@@ -277,7 +277,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:**
 
         ```
-        ./5.sh 2011
+	$ ./5.sh 2011
         ```
 	
 	* Script HBase:
@@ -297,14 +297,14 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
-        ```
+	```
 
 	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
         **Tiempo:**
 
-        ```
-        hive -f 6.hql
-        ```
+	```
+	$ hive -f 6.hql
+	```
 
 	* Script HBase:
 	* Script SparkSQL:
