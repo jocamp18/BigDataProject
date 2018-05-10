@@ -147,21 +147,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @in_per as inpatients_proportion;
 	```
 
-	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
-	**Tiempo:** 52.5678 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.  
+	**Tiempo:** 52.5678 segundos.
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/1.mysql
 	```
 
-	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:** 1 minuto 2.967 segundos
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.  
+	**Tiempo:** 1 minuto 2.967 segundos.  
 	
 	```
 	$ ./1.sh 2011
 	```
 
-	* Script HBase:
 	* Script SparkSQL:
 
 	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
@@ -176,21 +175,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @out_per as outpatients_proportion;
 	```
 
-	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
-	**Tiempo:** 52.1975 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.  
+	**Tiempo:** 52.1975 segundos.  
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/2.mysql
 	```
 
-	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:** 1 minuto 4.2406 segundos
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.  
+	**Tiempo:** 1 minuto 4.2406 segundos.  
 
 	```
 	$ ./2.sh 2011
 	```
 
-	* Script HBase:
 	* Script SparkSQL:
 
 	4.3 ¿Cuáles sintomas son los más comunes por año?
@@ -202,21 +200,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT princ_diag_code, SUM(patients) FROM((SELECT princ_diag_code, COUNT(*) AS patients FROM inpatients WHERE year=@year GROUP BY princ_diag_code) UNION (SELECT princ_diag_code, COUNT(*) AS patients FROM outpatients WHERE year=@year GROUP BY princ_diag_code)) COUNTY_PATIENTS GROUP BY princ_diag_code ORDER BY patients DESC LIMIT @top;
 	```
 
-	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
-	**Tiempo:** 56.2993 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.  
+	**Tiempo:** 56.2993 segundos.
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
 	```
 
-	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
+	* Script Hive: Este es un query HQL, los parametros se manejan internamente.  
 	**Tiempo:** 37.9557 segundos
 
 	```
 	$ hive -f 3.hql
 	```
 
-	* Script HBase:
 	* Script SparkSQL:
 
 	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
@@ -236,21 +233,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:
-	**Tiempo:** 1 minuto 38.399 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de este será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos:  
+	**Tiempo:** 1 minuto 38.399 segundos.
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
 	```
 
-	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:** 2 minutos 8.4631 segundos
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.  
+	**Tiempo:** 2 minutos 8.4631 segundos.
 
 	```
 	$ ./4.sh 2011
 	```
 
-	* Script HBase:
 	* Script SparkSQL:
 
 	4.5 ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
@@ -266,21 +262,20 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT @male_per AS male_proportion, @female_per AS female_proportion;
 	```
 	
-	* Script MySQL:  Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:
-	*Tiempo:* 48.862 segundos
+	* Script MySQL:  Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:  
+	*Tiempo:* 48.862 segundos.
 
 	```
        	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
 	```
 
-	* Script Hive:Este script en bash recibe como parametro el año que se desea especificar.
-	**Tiempo:** 1 minuto 2.4223 segundos
+	* Script Hive:Este script en bash recibe como parametro el año que se desea especificar.  
+	**Tiempo:** 1 minuto 2.4223 segundos.
 
 	```
 	$ ./5.sh 2011
 	```
 	
-	* Script HBase:
 	* Script SparkSQL:
 
 	4.6 ¿Cuál es el condado donde más consultas médicas se realizan durante un año en específico?
@@ -292,66 +287,66 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	SELECT county,year, patients FROM((SELECT county, year, COUNT(*) AS patients FROM inpatients group by county) UNION (SELECT county, year, COUNT(*) AS patients FROM outpatients group by county)) COUNTY_PATIENTS WHERE year=@year GROUP BY county ORDER BY patients DESC LIMIT @top;
 	```
 
-	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.
-	**Tiempo:** 54.7685 segundos
+	* Script MySQL: Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script.  
+	**Tiempo:** 54.7685 segundos.
 
 	```
         $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
 	```
 
-	* Script Hive: Este es un query HQL, los parametros se manejan internamente.
-        **Tiempo:** 36.9591 segundos
+	* Script Hive: Este es un query HQL, los parametros se manejan internamente.  
+        **Tiempo:** 36.9591 segundos.
 
 	```
 	$ hive -f 6.hql
 	```
 
-	* Script HBase:
 	* Script SparkSQL:
 
-5. Resultados
+5. Resultados: En este numeral se aprecian las respuestas a cada una de las preguntas planteadas en el numeral anterior, las respuestas están en el mismo orden en el que fueron formuladas las pregutnas.
 
-Output MySQL  1
-inpatients_proportion
-24.838161800
+	5.1 Porcentaje de pacientes aceptados:   
 
-Output MySQL  2
-outpatients_proportion
-75.161838100
+	24.838161800%  
 
-Output MySQL  3
-princ_diag_code pat
-V7612   899374
-V3000   227216
-V7651   162563
-78900   134323
-V3001   125385
-78650   120846
-7840    116996
-78659   111364
-36616   108938
-41401   98306
+	5.2 Porcentaje de pacientes rechazados:  
 
-Output MySQL  4
-male_proportion female_proportion
-36.828983600    63.171016300
+	75.161838100%  
 
-Output MySQL  5
-male_proportion female_proportion
-36.073144800    63.926855100
+	5.3 Los 10 sintomas más comunes en orden.  
 
-Output MySQL  6
-county  pat
-201     1651672
-113     939150
-439     694932
-029     662052
-453     414666
-        363240
-085     326415
-215     321926
-141     315050
-027     245063
+	V7612   899374  
+	V3000   227216  
+	V7651   162563  
+	78900   134323  
+	V3001   125385  
+	78650   120846  
+	7840    116996  
+	78659   111364  
+	36616   108938  
+	41401   98306  
 
+	5.4 Porcentaje de hombres y mujeres que asisten a los centros médicos.  
+	
+	Hombres: 36.828983600%  
+	Mujeres: 63.171016300%  
+
+	5.5 Porcentaje de hombres y mujeres que asisten a los centros médicos sin tener necesidades reales.  
+
+	Hombres: 36.073144800%  
+	Mujeres: 63.926855100%  
+
+	5.6 Los 10 condados donde más consultas médicas se realizan.  
+
+	201     1651672  
+	113     939150  
+	439     694932  
+	029     662052  
+	453     414666  
+		363240  
+	085     326415  
+	215     321926  
+	141     315050  
+	027     245063  
 
 6. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
