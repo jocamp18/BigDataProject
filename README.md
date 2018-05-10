@@ -204,7 +204,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 56.2993 segundos.
 
 	```
-        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
+	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/3.mysql
 	```
 
 	* Script Hive: Este es un query HQL, los parametros se manejan internamente.  
@@ -237,7 +237,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 1 minuto 38.399 segundos.
 
 	```
-        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
+	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/4.mysql
 	```
 
 	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.  
@@ -266,7 +266,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	*Tiempo:* 48.862 segundos.
 
 	```
-       	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
+	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
 	```
 
 	* Script Hive:Este script en bash recibe como parametro el año que se desea especificar.  
@@ -291,7 +291,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 54.7685 segundos.
 
 	```
-        $ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
+	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/6.mysql
 	```
 
 	* Script Hive: Este es un query HQL, los parametros se manejan internamente.  
@@ -307,14 +307,19 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 	5.1 Porcentaje de pacientes aceptados:   
 
+	```
 	24.838161800%  
+	```
 
 	5.2 Porcentaje de pacientes rechazados:  
 
+	```
 	75.161838100%  
+	```
 
 	5.3 Los 10 sintomas más comunes en orden.  
 
+	```
 	V7612   899374  
 	V3000   227216  
 	V7651   162563  
@@ -325,19 +330,25 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	78659   111364  
 	36616   108938  
 	41401   98306  
+	```
 
 	5.4 Porcentaje de hombres y mujeres que asisten a los centros médicos.  
-	
+
+	```	
 	Hombres: 36.828983600%  
 	Mujeres: 63.171016300%  
+	```
 
 	5.5 Porcentaje de hombres y mujeres que asisten a los centros médicos sin tener necesidades reales.  
 
+	```
 	Hombres: 36.073144800%  
 	Mujeres: 63.926855100%  
+	```
 
 	5.6 Los 10 condados donde más consultas médicas se realizan.  
-
+	
+	```
 	201     1651672  
 	113     939150  
 	439     694932  
@@ -348,5 +359,6 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	215     321926  
 	141     315050  
 	027     245063  
+	```
 
 6. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
