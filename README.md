@@ -167,7 +167,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 46.8236 segundos
 
 	```
-        $ <path-to-this-project>/questions/spark/1.sh 2011
+	$ <path-to-this-project>/questions/spark/1.sh 2011
 	```
 
 	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
@@ -200,7 +200,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:** 46.8743 segundos
 
 	```
-        $ <path-to-this-project>/questions/spark/2.sh 2011
+	$ <path-to-this-project>/questions/spark/2.sh 2011
 	```
 
 	4.3 ¿Cuáles sintomas son los más comunes por año?
@@ -230,7 +230,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:**  32.7518 segundos
 
 	```
-        $ spark-sql -f <path-to-this-project>/questions/spark/3.sql
+	$ spark-sql -f <path-to-this-project>/questions/spark/3.sql
 	```
 
 	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
@@ -268,7 +268,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:** 1 minuto 35.046 segundos.
 
 	```
-        $ <path-to-this-project>/questions/spark/4.sh 2011
+	$ <path-to-this-project>/questions/spark/4.sh 2011
 	```
 
 
@@ -303,7 +303,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:**  45.9412 segundos.
 
 	```
-        $ <path-to-this-project>/questions/spark/5.sh 2011
+	$ <path-to-this-project>/questions/spark/5.sh 2011
 	```
 
 	4.6 ¿Cuál es el condado donde más consultas médicas se realizan durante un año en específico?
@@ -333,7 +333,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:**  30.2448 segundos.
 
         ```
-        $ spark-sql -f <path-to-this-project>/questions/spark/6.sql
+	$ spark-sql -f <path-to-this-project>/questions/spark/6.sql
         ```
 
 5. Resultados: En este numeral se aprecian las respuestas a cada una de las preguntas planteadas en el numeral anterior, las respuestas están en el mismo orden en el que fueron formuladas las pregutnas.
@@ -396,10 +396,12 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 6. Tiempo: A continuación se presenta la tabla de resultados de las seis preguntas planteadas en cada una de las plataformas (MySQL, Hive y Spark).
 
-H/Q | #1 | #2 | #3 | #4 | #5 | #6 
---- | --- | --- | --- |--- |--- |--- 
-MySQL | 52.5678s | 52.1975s | 56.2993s | 1m 38.399s | 48.862s | 54.7685s 
-Hive | 1m 2.967s | 1m 4.2406s | 37.9557s | 2m 8.4631s | 1m 2.4223s | 36.9591s
-Spark | 46.8236s | 46.8743s | 32.7518s | 1m 35.046 | 45.9412s | 30.2448s
+	H/Q | #1 | #2 | #3 | #4 | #5 | #6 
+	--- | --- | --- | --- |--- |--- |--- 
+	MySQL | 52.5678s | 52.1975s | 56.2993s | 1m 38.399s | 48.862s | 54.7685s 
+	Hive | 1m 2.967s | 1m 4.2406s | 37.9557s | 2m 8.4631s | 1m 2.4223s | 36.9591s
+	Spark | 46.8236s | 46.8743s | 32.7518s | 1m 35.046 | 45.9412s | 30.2448s
 
 7. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
+
+	URL: https://us-east-1.online.tableau.com/#/site/jocamp18ateafiteduco/workbooks
