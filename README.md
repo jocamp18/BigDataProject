@@ -12,7 +12,6 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 * Spark
 
 ## Estructura de carpetas
-```
 .
 ├── mysql
 │   ├── mysql-inpatient.txt
@@ -21,11 +20,14 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 │   ├── mix-by-year.ktr
 │   ├── inpatient-select-merge.ktr
 │   └── outpatient-merge-select.ktr
+├── questions
+│   ├── hive
+│   ├── mysql
+│   └── spark
 ├── sqoop
 │   ├── inpatients.java
 │   └── outpatients.java
-```
-
+└── README.md
 ## Proceso
 
 1. (E) El primer trabajo que se debe hacer es realizar la extracción de todos los datos que vamos a utilizar durante la realización de este trabajo, estos pueden ser encontrados en las siguientes páginas web:
@@ -158,10 +160,15 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 1 minuto 2.967 segundos.  
 	
 	```
-	$ ./1.sh 2011
+	$ <path-to-this-project>/questions/hive/1.sh 2011
 	```
 
-	* Script SparkSQL:
+	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.  
+	**Tiempo:** 46.712 segundos
+
+	```
+        $ <path-to-this-project>/questions/spark/1.sh 2011
+        ```
 
 	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
 	
@@ -186,10 +193,15 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 1 minuto 4.2406 segundos.  
 
 	```
-	$ ./2.sh 2011
+	$ <path-to-this-project>/questions/hive/2.sh 2011
 	```
 
-	* Script SparkSQL:
+	* Script SparkSQL:Este script en bash recibe como parametro el año que se desea especificar.
+        **Tiempo:** 46.8743 segundos
+
+        ```
+        $ <path-to-this-project>/questions/spark/2.sh 2011
+        ```
 
 	4.3 ¿Cuáles sintomas son los más comunes por año?
 
@@ -211,10 +223,15 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 37.9557 segundos
 
 	```
-	$ hive -f 3.hql
+	$ hive -f <path-to-this-project>/questions/hive/3.hql
 	```
 
-	* Script SparkSQL:
+	* Script SparkSQL:Este es un query SQL, los parametros se manejan internamente.
+        **Tiempo:**  segundos
+
+        ```
+        $ spark-sql -f <path-to-this-project>/questions/spark/3.sql
+        ```
 
 	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
 
@@ -244,10 +261,16 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	**Tiempo:** 2 minutos 8.4631 segundos.
 
 	```
-	$ ./4.sh 2011
+	$ <path-to-this-project>/questions/hive/4.sh 2011
 	```
 
-	* Script SparkSQL:
+	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.
+        **Tiempo:** segundos.
+
+        ```
+        $ <path-to-this-project>/questions/spark/4.sh 2011
+        ```
+
 
 	4.5 ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
 
@@ -269,14 +292,19 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
 	```
 
-	* Script Hive:Este script en bash recibe como parametro el año que se desea especificar.  
+	* Script Hive: Este script en bash recibe como parametro el año que se desea especificar.  
 	**Tiempo:** 1 minuto 2.4223 segundos.
 
 	```
-	$ ./5.sh 2011
+	$ <path-to-this-project>/questions/hive/5.sh 2011
 	```
 	
-	* Script SparkSQL:
+	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.
+        **Tiempo:**  segundos.
+
+        ```
+        $ <path-to-this-project>/questions/spark/5.sh 2011
+        ```
 
 	4.6 ¿Cuál es el condado donde más consultas médicas se realizan durante un año en específico?
 
@@ -298,10 +326,15 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:** 36.9591 segundos.
 
 	```
-	$ hive -f 6.hql
+	$ hive -f <path-to-this-project>/questions/hive/6.hql
 	```
 
-	* Script SparkSQL:
+	* Script SparkSQL: Este es un query SQL, los parametros se manejan internamente.
+        **Tiempo:**  segundos.
+
+        ```
+        $ hive -f <path-to-this-project>/questions/spark/6.sql
+        ```
 
 5. Resultados: En este numeral se aprecian las respuestas a cada una de las preguntas planteadas en el numeral anterior, las respuestas están en el mismo orden en el que fueron formuladas las pregutnas.
 

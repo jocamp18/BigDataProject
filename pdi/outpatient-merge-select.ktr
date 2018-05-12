@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>outpatient-merge-select</name>
+    <name>outpatient-merge-select-2</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -459,6 +459,11 @@
     </hop>
     <hop>
       <from>E_CODES Concat</from>
+      <to>Split Fields</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Split Fields</from>
       <to>Outpatient Text file output</to>
       <enabled>Y</enabled>
     </hop>
@@ -4332,8 +4337,8 @@
     </GUI>
   </step>
   <step>
-    <name>E_CODES Concat</name>
-    <type>ConcatFields</type>
+    <name>Outpatient Text file output</name>
+    <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -4342,11 +4347,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator>;</separator>
+    <separator>,</separator>
     <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
+    <header>Y</header>
     <footer>N</footer>
     <format>DOS</format>
     <compression>None</compression>
@@ -4356,7 +4361,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>file</name>
+      <name>/home/jocampo/Desktop/BigDataProject/output/outpatients-2</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -4375,7 +4380,7 @@
     </file>
     <fields>
       <field>
-        <name>E_CODE_1</name>
+        <name>YEAR</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4387,7 +4392,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_2</name>
+        <name>QUARTER</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4399,7 +4404,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_3</name>
+        <name>RECORD_ID</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4411,7 +4416,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_4</name>
+        <name>THCIC_ID</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4423,7 +4428,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_5</name>
+        <name>SEX_CODE</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4435,7 +4440,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_6</name>
+        <name>COUNTY</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4447,7 +4452,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_7</name>
+        <name>PAT_STATE</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4459,7 +4464,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_8</name>
+        <name>PAT_COUNTRY</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4471,7 +4476,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_9</name>
+        <name>PAT_AGE</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4483,7 +4488,31 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>E_CODE_10</name>
+        <name>PRINC_DIAG_CODE</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODES</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>E_CODES</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4495,11 +4524,6 @@
         <precision>-1</precision>
       </field>
     </fields>
-    <ConcatFields>
-      <targetFieldName>E_CODES</targetFieldName>
-      <targetFieldLength>0</targetFieldLength>
-      <removeSelectedFields>Y</removeSelectedFields>
-    </ConcatFields>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -4508,7 +4532,165 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>752</xloc>
+      <xloc>1040</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>SERVICE_QUARTER</name>
+        <rename>DISCHARGE</rename>
+      </field>
+      <field>
+        <name>RECORD_ID</name>
+      </field>
+      <field>
+        <name>THCIC_ID</name>
+      </field>
+      <field>
+        <name>SEX_CODE</name>
+      </field>
+      <field>
+        <name>PAT_COUNTY</name>
+        <rename>COUNTY</rename>
+      </field>
+      <field>
+        <name>PAT_STATE</name>
+      </field>
+      <field>
+        <name>PAT_COUNTRY</name>
+      </field>
+      <field>
+        <name>PAT_AGE</name>
+      </field>
+      <field>
+        <name>PRINC_DIAG_CODE</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_1</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_2</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_3</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_4</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_5</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_6</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_7</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_8</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_9</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_10</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_11</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_12</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_13</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_14</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_15</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_16</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_17</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_18</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_19</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_20</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_21</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_22</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_23</name>
+      </field>
+      <field>
+        <name>OTH_DIAG_CODE_24</name>
+      </field>
+      <field>
+        <name>E_CODE_1</name>
+      </field>
+      <field>
+        <name>E_CODE_2</name>
+      </field>
+      <field>
+        <name>E_CODE_3</name>
+      </field>
+      <field>
+        <name>E_CODE_4</name>
+      </field>
+      <field>
+        <name>E_CODE_5</name>
+      </field>
+      <field>
+        <name>E_CODE_6</name>
+      </field>
+      <field>
+        <name>E_CODE_7</name>
+      </field>
+      <field>
+        <name>E_CODE_8</name>
+      </field>
+      <field>
+        <name>E_CODE_9</name>
+      </field>
+      <field>
+        <name>E_CODE_10</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>384</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
@@ -4864,8 +5046,8 @@
     </GUI>
   </step>
   <step>
-    <name>Outpatient Text file output</name>
-    <type>TextFileOutput</type>
+    <name>E_CODES Concat</name>
+    <type>ConcatFields</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -4874,11 +5056,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator>,</separator>
+    <separator>;</separator>
     <enclosure>"</enclosure>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
+    <header>N</header>
     <footer>N</footer>
     <format>DOS</format>
     <compression>None</compression>
@@ -4888,7 +5070,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>/home/jocampo/Desktop/BigDataProject/output/outpatients</name>
+      <name>file</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
@@ -4907,7 +5089,7 @@
     </file>
     <fields>
       <field>
-        <name>DISCHARGE</name>
+        <name>E_CODE_1</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4919,7 +5101,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>RECORD_ID</name>
+        <name>E_CODE_2</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4931,7 +5113,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>THCIC_ID</name>
+        <name>E_CODE_3</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4943,7 +5125,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>SEX_CODE</name>
+        <name>E_CODE_4</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4955,7 +5137,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>COUNTY</name>
+        <name>E_CODE_5</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4967,7 +5149,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>PAT_STATE</name>
+        <name>E_CODE_6</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4979,7 +5161,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>PAT_COUNTRY</name>
+        <name>E_CODE_7</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -4991,7 +5173,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>PAT_AGE</name>
+        <name>E_CODE_8</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -5003,7 +5185,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>PRINC_DIAG_CODE</name>
+        <name>E_CODE_9</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -5015,19 +5197,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>OTH_DIAG_CODES</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>E_CODES</name>
+        <name>E_CODE_10</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -5039,6 +5209,11 @@
         <precision>-1</precision>
       </field>
     </fields>
+    <ConcatFields>
+      <targetFieldName>E_CODES</targetFieldName>
+      <targetFieldLength>0</targetFieldLength>
+      <removeSelectedFields>Y</removeSelectedFields>
+    </ConcatFields>
     <cluster_schema/>
     <remotesteps>
       <input>
@@ -5047,14 +5222,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>960</xloc>
+      <xloc>752</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
+    <name>Split Fields</name>
+    <type>FieldSplitter</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -5063,139 +5238,40 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <splitfield>DISCHARGE</splitfield>
+    <delimiter>Q</delimiter>
+    <enclosure/>
     <fields>
       <field>
-        <name>SERVICE_QUARTER</name>
-        <rename>DISCHARGE</rename>
+        <name>YEAR</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>4</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
       <field>
-        <name>RECORD_ID</name>
+        <name>QUARTER</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
       </field>
-      <field>
-        <name>THCIC_ID</name>
-      </field>
-      <field>
-        <name>SEX_CODE</name>
-      </field>
-      <field>
-        <name>PAT_COUNTY</name>
-        <rename>COUNTY</rename>
-      </field>
-      <field>
-        <name>PAT_STATE</name>
-      </field>
-      <field>
-        <name>PAT_COUNTRY</name>
-      </field>
-      <field>
-        <name>PAT_AGE</name>
-      </field>
-      <field>
-        <name>PRINC_DIAG_CODE</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_1</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_2</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_3</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_4</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_5</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_6</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_7</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_8</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_9</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_10</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_11</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_12</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_13</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_14</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_15</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_16</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_17</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_18</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_19</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_20</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_21</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_22</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_23</name>
-      </field>
-      <field>
-        <name>OTH_DIAG_CODE_24</name>
-      </field>
-      <field>
-        <name>E_CODE_1</name>
-      </field>
-      <field>
-        <name>E_CODE_2</name>
-      </field>
-      <field>
-        <name>E_CODE_3</name>
-      </field>
-      <field>
-        <name>E_CODE_4</name>
-      </field>
-      <field>
-        <name>E_CODE_5</name>
-      </field>
-      <field>
-        <name>E_CODE_6</name>
-      </field>
-      <field>
-        <name>E_CODE_7</name>
-      </field>
-      <field>
-        <name>E_CODE_8</name>
-      </field>
-      <field>
-        <name>E_CODE_9</name>
-      </field>
-      <field>
-        <name>E_CODE_10</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
     </fields>
     <cluster_schema/>
     <remotesteps>
@@ -5205,7 +5281,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
+      <xloc>880</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>

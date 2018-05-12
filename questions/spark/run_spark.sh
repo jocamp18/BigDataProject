@@ -5,7 +5,7 @@ do
 	echo "Output Spark " $i >> execution/output.txt
 	if [ $i -eq 3 ] || [ $i -eq 6 ]
 	then 
-		command="spark -f "$i".sql"
+		command="spark-sql -f "$i".sql"
 	else
 		command="./"$i".sh 2011"
 	fi
