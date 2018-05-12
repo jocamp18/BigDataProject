@@ -12,6 +12,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 * Spark
 
 ## Estructura de carpetas
+```
 .
 ├── mysql  
 │   ├── mysql-inpatient.txt  
@@ -28,6 +29,8 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 │   ├── inpatients.java  
 │   └── outpatients.java  
 └── README.md  
+```
+
 ## Proceso
 
 1. (E) El primer trabajo que se debe hacer es realizar la extracción de todos los datos que vamos a utilizar durante la realización de este trabajo, estos pueden ser encontrados en las siguientes páginas web:
