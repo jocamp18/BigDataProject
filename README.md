@@ -13,21 +13,21 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 ## Estructura de carpetas
 .
-├── mysql
-│   ├── mysql-inpatient.txt
-│   └── mysql-outpatient.txt	
-├── pdi
-│   ├── mix-by-year.ktr
-│   ├── inpatient-select-merge.ktr
-│   └── outpatient-merge-select.ktr
-├── questions
-│   ├── hive
-│   ├── mysql
-│   └── spark
-├── sqoop
-│   ├── inpatients.java
-│   └── outpatients.java
-└── README.md
+├── mysql  
+│   ├── mysql-inpatient.txt  
+│   └── mysql-outpatient.txt  	
+├── pdi  
+│   ├── mix-by-year.ktr  
+│   ├── inpatient-select-merge.ktr  
+│   └── outpatient-merge-select.ktr  
+├── questions  
+│   ├── hive  
+│   ├── mysql  
+│   └── spark  
+├── sqoop  
+│   ├── inpatients.java  
+│   └── outpatients.java  
+└── README.md  
 ## Proceso
 
 1. (E) El primer trabajo que se debe hacer es realizar la extracción de todos los datos que vamos a utilizar durante la realización de este trabajo, estos pueden ser encontrados en las siguientes páginas web:
@@ -168,7 +168,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 	```
         $ <path-to-this-project>/questions/spark/1.sh 2011
-        ```
+	```
 
 	4.2 ¿Cuál es la proporción de usuarios que asisten a los centros médicos y no tienen una urgencia real en un año determinado?
 	
@@ -199,9 +199,9 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	* Script SparkSQL:Este script en bash recibe como parametro el año que se desea especificar.
         **Tiempo:** 46.8743 segundos
 
-        ```
+	```
         $ <path-to-this-project>/questions/spark/2.sh 2011
-        ```
+	```
 
 	4.3 ¿Cuáles sintomas son los más comunes por año?
 
@@ -229,9 +229,9 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	* Script SparkSQL:Este es un query SQL, los parametros se manejan internamente.
         **Tiempo:**  32.7518 segundos
 
-        ```
+	```
         $ spark-sql -f <path-to-this-project>/questions/spark/3.sql
-        ```
+	```
 
 	4.4 ¿Quienes asisten más a los centros médicos los hombres o las mujeres durante el año?
 
@@ -265,11 +265,11 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.
-        **Tiempo:** 1 minutos 35.046 segundos.
+        **Tiempo:** 1 minuto 35.046 segundos.
 
-        ```
+	```
         $ <path-to-this-project>/questions/spark/4.sh 2011
-        ```
+	```
 
 
 	4.5 ¿Entre hombres y mujeres quienes son los que más asisten a los centros médicos sin tener realmente una necesidad?
@@ -286,7 +286,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 	
 	* Script MySQL:  Este query se pasa al ejecutar MySQL, los parametros se manejan de forma interna en el script. El resultado final de esta ejecución será un cuadro donde se ven los dos porcentajes de asistencia por cada uno de los dos generos cuando no se tienen una emergencia real:  
-	*Tiempo:* 48.862 segundos.
+	**Tiempo:** 48.862 segundos.
 
 	```
 	$ mysql -u curso -pcurso < <path-to-this-project>/questions/mysql/5.mysql
@@ -302,9 +302,9 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.
         **Tiempo:**  45.9412 segundos.
 
-        ```
+	```
         $ <path-to-this-project>/questions/spark/5.sh 2011
-        ```
+	```
 
 	4.6 ¿Cuál es el condado donde más consultas médicas se realizan durante un año en específico?
 
@@ -333,7 +333,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
         **Tiempo:**  30.2448 segundos.
 
         ```
-        $ hive -f <path-to-this-project>/questions/spark/6.sql
+        $ spark-sql -f <path-to-this-project>/questions/spark/6.sql
         ```
 
 5. Resultados: En este numeral se aprecian las respuestas a cada una de las preguntas planteadas en el numeral anterior, las respuestas están en el mismo orden en el que fueron formuladas las pregutnas.
@@ -398,10 +398,8 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 H/Q | #1 | #2 | #3 | #4 | #5 | #6 
 --- | --- | --- | --- |--- |--- |--- 
-MySQL | 52.5678s | 283 | 290 | 286 | 289 | 285 
---- | --- | --- | --- |--- |--- |--- 
-Hive | 1m 2.967s | 283 | 290 | 286 | 289 | 285
---- | --- | --- | --- |--- |--- |--- 
-Spark | 46.8236s | 283 | 290 | 286 | 289 | 285 
+MySQL | 52.5678s | 52.1975s | 56.2993s | 1m 38.399s | 48.862s | 54.7685s 
+Hive | 1m 2.967s | 1m 4.2406s | 37.9557s | 2m 8.4631s | 1m 2.4223s | 36.9591s
+Spark | 46.8236s | 46.8743s | 32.7518s | 1m 35.046 | 45.9412s | 30.2448s
 
 7. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
