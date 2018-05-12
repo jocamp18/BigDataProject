@@ -164,7 +164,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.  
-	**Tiempo:** 46.712 segundos
+	**Tiempo:** 46.8236 segundos
 
 	```
         $ <path-to-this-project>/questions/spark/1.sh 2011
@@ -227,7 +227,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script SparkSQL:Este es un query SQL, los parametros se manejan internamente.
-        **Tiempo:**  segundos
+        **Tiempo:**  32.7518 segundos
 
         ```
         $ spark-sql -f <path-to-this-project>/questions/spark/3.sql
@@ -265,7 +265,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.
-        **Tiempo:** segundos.
+        **Tiempo:** 1 minutos 35.046 segundos.
 
         ```
         $ <path-to-this-project>/questions/spark/4.sh 2011
@@ -300,7 +300,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 	
 	* Script SparkSQL: Este script en bash recibe como parametro el año que se desea especificar.
-        **Tiempo:**  segundos.
+        **Tiempo:**  45.9412 segundos.
 
         ```
         $ <path-to-this-project>/questions/spark/5.sh 2011
@@ -330,7 +330,7 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	```
 
 	* Script SparkSQL: Este es un query SQL, los parametros se manejan internamente.
-        **Tiempo:**  segundos.
+        **Tiempo:**  30.2448 segundos.
 
         ```
         $ hive -f <path-to-this-project>/questions/spark/6.sql
@@ -394,4 +394,14 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 	027     245063  
 	```
 
-6. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
+6. Tiempo: A continuación se presenta la tabla de resultados de las seis preguntas planteadas en cada una de las plataformas (MySQL, Hive y Spark).
+
+H/Q | #1 | #2 | #3 | #4 | #5 | #6 
+--- | --- | --- | --- |--- |--- |--- 
+MySQL | 52.5678s | 283 | 290 | 286 | 289 | 285 
+--- | --- | --- | --- |--- |--- |--- 
+Hive | 1m 2.967s | 283 | 290 | 286 | 289 | 285
+--- | --- | --- | --- |--- |--- |--- 
+Spark | 46.8236s | 283 | 290 | 286 | 289 | 285 
+
+7. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
