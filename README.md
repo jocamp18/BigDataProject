@@ -407,4 +407,8 @@ Este es el primer proyecto de la materia de BigData que esta orientado a la comb
 
 7. Visualización: Para visualizar los datos procesados,la información relevante  y ls respuestas a las preguntas anteriormente planteadas se decide utilizar Tableau.
 
+Para ello, al momento de realizar las gráficas, se decidió que utilizaríamos los datos disponibles para 2010 y 2011, pues todas las preguntas requieren información de outpatients, la cual sólo está disponible para los años mencionados.
+
+En la carpeta Tableau se puede encontrar un libro del software con 6 hojas, correspondientes a las 6 preguntas planteadas, que muestran de manera gráfica la información definida.
+
 	URL: https://us-east-1.online.tableau.com/#/site/jocamp18ateafiteduco/workbooks
